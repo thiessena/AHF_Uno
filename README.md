@@ -21,4 +21,4 @@ Falls eine gewisse Funktionalität von einer anderen Klasse benötigt wird, dann
 | Textausgabe/GUI | Tim T. | |
 | Spiel | Tobias | |
 | Dokumentation | Lysanne | |
-| Tests | Leon | |
+| Unit-Tests | Leon | |
