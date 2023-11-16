@@ -18,7 +18,7 @@ Falls eine gewisse Funktionalität von einer anderen Klasse benötigt wird, dann
 | Karten | Jonas | |
 | Kartenstapel | Levin | |
 | Handkarten | Louis | |
-| Textausgabe | Tim T. | |
+| Textausgabe/GUI | Tim T. | |
 | Spiel | Tobias | |
 | Dokumentation | Lysanne | |
 | Tests | Leon | |
