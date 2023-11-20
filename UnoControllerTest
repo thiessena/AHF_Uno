@@ -1,0 +1,61 @@
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UnoControllerTest {
+    private UnoModel model;
+    private UnoView view;
+    private UnoController controller;
+
+    @Before
+    public void setUp() {
+        model = new UnoModel();
+        view = new UnoView();
+        controller = new UnoController(model, view);
+    }
+
+    @Test
+    public void testDrawCard() {
+        int initialPlayerHandSize = model.getPlayerHand().size();
+        controller.drawCard();
+        int newPlayerHandSize = model.getPlayerHand().size();
+        assertEquals(initialPlayerHandSize + 1, newPlayerHandSize);
+    }
+
+    @Test
+    public void testPlayCard() {
+        // Set up test data
+        Card card = new Card("Red", "5");
+        model.getPlayerHand().add(card);
+
+        // Call the method under test
+        controller.playCard();
+
+        // Assert expected behavior
+        assertFalse(model.getPlayerHand().contains(card));
+        assertTrue(model.getPlayedCards().contains(card));
+    }
+
+    @Test
+    public void testUpdateView() {
+        // Set up test data
+        List<Card> playerHand = new ArrayList<>();
+        playerHand.add(new Card("Red", "5"));
+        playerHand.add(new Card("Blue", "2"));
+        model.setPlayerHand(playerHand);
+
+        List<Card> playedCards = new ArrayList<>();
+        playedCards.add(new Card("Green", "Skip"));
+        playedCards.add(new Card("Yellow", "Reverse"));
+        model.setPlayedCards(playedCards);
+
+        // Call the method under test
+        controller.updateView();
+
+        // Assert expected behavior
+        assertEquals(playerHand, view.getPlayerHand());
+        assertEquals(playedCards, view.getPlayedCards());
+    }
+}
