@@ -29,7 +29,7 @@ public class Kartenstapel {
     }
 }
 
-Diese Klasse verwendet eine andere Klasse UnoCard, die die einzelnen Karten repräsentiert. Hier ist eine mögliche Implementierung dieser Klasse:
+//Diese Klasse verwendet eine andere Klasse UnoCard, die die einzelnen Karten repräsentiert. Hier ist eine mögliche Implementierung dieser Klasse:
 
 public class Karten {
     private UnoColor color;
