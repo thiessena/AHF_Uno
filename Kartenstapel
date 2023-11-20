@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Kartenstapel {
-    private List<UnoCard> cards;
+    private List<Kartenstapel> cards;
 
     public Kartenstapel() {
         cards = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Kartenstapel {
         Collections.shuffle(cards);
     }
 
-    public UnoCard drawCard() {
+    public Karten drawCard() {
         if (cards.isEmpty()) {
             return null; // Keine Karten mehr im Stapel
         }
@@ -29,26 +29,80 @@ public class Kartenstapel {
     }
 }
 
-//Diese Klasse verwendet eine andere Klasse UnoCard, die die einzelnen Karten repräsentiert. Hier ist eine mögliche Implementierung dieser Klasse:
+//Diese Klasse verwendet eine andere Klasse Karten, die die einzelnen Karten repräsentiert.
 
 public class Karten {
-    private UnoColor color;
-    private UnoValue value;
+    private List<String> karten;
+    private List<String> farben;
+    private List<String> ziffern;
+    private List<String> sonderzeichen;
 
-    public UnoCard(UnoColor color) {
-        this.color = color;
-        this.value = null;
+    public Karten() {
+        karten = new ArrayList<>();
+        farben = new ArrayList<>();
+        ziffern = new ArrayList<>();
+        sonderzeichen = new ArrayList<>();
+
+        farben.add("Rot");
+        farben.add("Blau");
+        farben.add("Gelb");
+        farben.add("Grün");
+
+        ziffern.add("0");
+        ziffern.add("1");
+        ziffern.add("2");
+        ziffern.add("3");
+        ziffern.add("4");
+        ziffern.add("5");
+        ziffern.add("6");
+        ziffern.add("7");
+        ziffern.add("8");
+        ziffern.add("9");
+
+        sonderzeichen.add("Aussetzen");
+        sonderzeichen.add("Zwei ziehen");
+        sonderzeichen.add("Vier ziehen");
+        sonderzeichen.add("Richtungswechsel");
+        sonderzeichen.add("Farbwechsel");
+
+        for (String farbe : farben) {
+            karten.add(farbe + " " + "0"); // Füge die Nullkarten hinzu
+            for (String zahl : ziffern.subList(1, ziffern.size())) {
+                karten.add(farbe + " " + zahl); // Füge die Ziffernkarten hinzu
+            }
+            for (String sonderzeichen : sonderzeichen) {
+                karten.add(farbe + " " + sonderzeichen); // Füge die Sonderzeichenkarten hinzu
+            }
+        }
+
+        for (String sonderzeichen : sonderzeichen) {
+            karten.add("Schwarz " + sonderzeichen); // Füge die schwarzen Sonderzeichenkarten hinzu
+            karten.add("Schwarz " + sonderzeichen);
+        }
+
+        for (String zahl : ziffern) {
+            karten.add("Schwarz " + zahl); // Füge die schwarzen Ziffernkarten hinzu
+            karten.add("Schwarz " + zahl);
+        }
     }
 
-    public UnoCard(UnoColor color, UnoValue value) {
-        this.color = color;
-        this.value = value;
+    public void mischen() {
+        Collections.shuffle(karten);
     }
 
-    public UnoColor getColor() {
-        return color;
+    public String ziehen() {
+        if (karten.size() > 0) {
+            return karten.remove(karten.size() - 1);
+        } else {
+            return null;
+        }
     }
 
-    public UnoValue getValue() {
-        return value;
+    public void karteHinzufuegen(String karte) {
+        karten.add(karte);
     }
+
+    public int anzahlKarten() {
+        return karten.size();
+    }
+}
