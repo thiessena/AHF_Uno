@@ -1,0 +1,91 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.io.*;
+import java.net.Socket;
+
+public class ClientTest {
+    private Client client;
+    private Socket socket;
+    private ObjectOutputStream outputStream;
+    private ObjectInputStream inputStream;
+
+    @Before
+    public void setUp() throws IOException {
+        client = new Client();
+        socket = new Socket();  // Mock Socket
+        outputStream = new ObjectOutputStream(new ByteArrayOutputStream());  // Mock ObjectOutputStream
+        inputStream = new ObjectInputStream(new ByteArrayInputStream(new byte[0]));  // Mock ObjectInputStream
+        client.socket = socket;
+        client.outputStream = outputStream;
+        client.inputStream = inputStream;
+    }
+
+    @After
+    public void tearDown() throws IOException {
+        client.disconnect();
+    }
+
+    @Test
+    public void testConnect() {
+        client.connect("localhost", 8080);
+        assertTrue(client.socket.isConnected());
+        assertTrue(client.outputStream != null);
+        assertTrue(client.inputStream != null);
+    }
+
+    @Test
+    public void testDisconnect() {
+        client.connect("localhost", 8080);
+        client.disconnect();
+        assertFalse(client.socket.isConnected());
+        assertNull(client.outputStream);
+        assertNull(client.inputStream);
+    }
+
+    @Test
+    public void testRegisterUser() throws IOException {
+        client.connect("localhost", 8080);
+        client.registerUser("John");
+        // Assert expected behavior
+    }
+
+    @Test
+    public void testPlayCard() throws IOException {
+        client.connect("localhost", 8080);
+        Card card = new Card("Ace", "Spades");
+        client.playCard(card);
+        // Assert expected behavior
+    }
+
+    @Test
+    public void testChooseColor() throws IOException {
+        client.connect("localhost", 8080);
+        Color color = Color.RED;
+        client.chooseColor(color);
+        // Assert expected behavior
+    }
+
+    @Test
+    public void testReceiveTopCard() throws IOException, ClassNotFoundException {
+        client.connect("localhost", 8080);
+        Card expectedCard = new Card("King", "Hearts");
+        outputStream.writeObject(expectedCard);
+        outputStream.flush();
+
+        Card receivedCard = client.receiveTopCard();
+        assertEquals(expectedCard, receivedCard);
+    }
+
+    @Test
+    public void testReceiveOtherPlayerCardCounts() throws IOException, ClassNotFoundException {
+        client.connect("localhost", 8080);
+        int[] expectedCounts = {3, 5, 2};
+        outputStream.writeObject(expectedCounts);
+        outputStream.flush();
+
+        int[] receivedCounts = client.receiveOtherPlayerCardCounts();
+        assertArrayEquals(expectedCounts, receivedCounts);
+    }
+}
