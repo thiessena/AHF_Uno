@@ -43,3 +43,27 @@ public class UnoController {
         view.setVisible(true);
     }
 }
+
+
+
+Dokumentation:
+
+@startuml
+
+class UnoController {
+    - model: UnoModel
+    - view: UnoView
+
+    + UnoController(model: UnoModel, view: UnoView)
+    + drawCard(): void
+    + playCard(): void
+    - updateView(): void
+    + main(args: String[]): void
+}
+
+UnoController -- UnoModel
+UnoController -- UnoView
+
+@enduml
+Diese Dokumentation zeigt die Struktur der Klasse "UnoController" mit ihren Attributen und Methoden. Die Assoziationen zu den Klassen "UnoModel" und "UnoView" werden ebenfalls dargestellt.
+
