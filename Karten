@@ -1,0 +1,36 @@
+class Karten:
+    def __init__(self):
+        self.karten = []
+        self.farben = ["Rot", "Blau", "Gelb", "Grün"]
+        self.ziffern = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        self.sonderzeichen = ["Aussetzen", "Zwei ziehen", "Vier ziehen", "Richtungswechsel", "Farbwechsel"]
+
+        for farbe in self.farben:
+            self.karten.append(farbe + " " + "0")  # Füge die Nullkarten hinzu
+            for zahl in self.ziffern[1:]:  # Füge die Ziffernkarten hinzu
+                self.karten.append(farbe + " " + zahl)
+            for sonderzeichen in self.sonderzeichen:  # Füge die Sonderzeichenkarten hinzu
+                self.karten.append(farbe + " " + sonderzeichen)
+        
+        for sonderzeichen in self.sonderzeichen:
+            self.karten.append("Schwarz " + sonderzeichen)  # Füge die schwarzen Sonderzeichenkarten hinzu
+            self.karten.append("Schwarz " + sonderzeichen)
+        
+        for zahl in self.ziffern:
+            self.karten.append("Schwarz " + zahl)  # Füge die schwarzen Ziffernkarten hinzu
+            self.karten.append("Schwarz " + zahl)
+
+    def mischen(self):
+        random.shuffle(self.karten)
+
+    def ziehen(self):
+        if len(self.karten) > 0:
+            return self.karten.pop()
+        else:
+            return None
+
+    def karte_hinzufuegen(self, karte):
+        self.karten.append(karte)
+
+    def anzahl_karten(self):
+        return len(self.karten)
