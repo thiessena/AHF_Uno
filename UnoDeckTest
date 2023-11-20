@@ -1,0 +1,35 @@
+mport org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.List;
+
+public class UnoDeckTest {
+    private UnoDeck deck;
+
+    @Before
+    public void setUp() {
+        deck = new UnoDeck();
+    }
+
+    @Test
+    public void testConstructor() {
+        int expectedSize = 108;
+        assertEquals(expectedSize, deck.getSize());
+    }
+
+    @Test
+    public void testShuffle() {
+        UnoCard firstCardBeforeShuffle = deck.drawCard();
+        deck.shuffle();
+        UnoCard firstCardAfterShuffle = deck.drawCard();
+        assertNotEquals(firstCardBeforeShuffle, firstCardAfterShuffle);
+    }
+
+    @Test
+    public void testDrawCard() {
+        int initialSize = deck.getSize();
+        UnoCard card = deck.drawCard();
+        assertNotNull(card);
+        assertEquals(initialSize - 1, deck.getSize());
+    }
+}
