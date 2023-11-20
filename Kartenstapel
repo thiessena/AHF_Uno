@@ -1,0 +1,67 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class UnoDeck {
+    private List<UnoCard> cards;
+
+    public UnoDeck() {
+        cards = new ArrayList<>();
+        // Erstelle alle Karten im Uno-Deck
+        for (UnoColor color : UnoColor.values()) {
+            if (color == UnoColor.WILD || color == UnoColor.WILD_DRAW_FOUR) {
+                // Füge die beiden Wild-Karten jeweils viermal hinzu
+                for (int i = 0; i < 4; i++) {
+                    cards.add(new UnoCard(color));
+                }
+            } else {
+                // Füge die übrigen Karten jeweils zweimal hinzu
+                for (int i = 0; i < 2; i++) {
+                    for (UnoValue value : UnoValue.values()) {
+                        cards.add(new UnoCard(color, value));
+                    }
+                }
+            }
+        }
+        // Mische die Karten
+        shuffle();
+    }
+
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
+
+    public UnoCard drawCard() {
+        if (cards.isEmpty()) {
+            return null; // Keine Karten mehr im Stapel
+        }
+        return cards.remove(cards.size() - 1);
+    }
+
+    public int getSize() {
+        return cards.size();
+    }
+}
+Diese Klasse verwendet eine andere Klasse UnoCard, die die einzelnen Karten repräsentiert. Hier ist eine mögliche Implementierung dieser Klasse:
+
+public class UnoCard {
+    private UnoColor color;
+    private UnoValue value;
+
+    public UnoCard(UnoColor color) {
+        this.color = color;
+        this.value = null;
+    }
+
+    public UnoCard(UnoColor color, UnoValue value) {
+        this.color = color;
+        this.value = value;
+    }
+
+    public UnoColor getColor() {
+        return color;
+    }
+
+    public UnoValue getValue() {
+        return value;
+    }
