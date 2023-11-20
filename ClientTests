@@ -89,3 +89,33 @@ public class ClientTest {
         assertArrayEquals(expectedCounts, receivedCounts);
     }
 }
+
+
+ Dokumentation: 
+
+@startuml
+
+class ClientTest {
+    - client: Client
+    - socket: Socket
+    - outputStream: ObjectOutputStream
+    - inputStream: ObjectInputStream
+
+    + setUp(): void
+    + tearDown(): void
+    + testConnect(): void
+    + testDisconnect(): void
+    + testRegisterUser(): void
+    + testPlayCard(): void
+    + testChooseColor(): void
+    + testReceiveTopCard(): void
+    + testReceiveOtherPlayerCardCounts(): void
+}
+
+ClientTest -- Client
+ClientTest -- Socket
+ClientTest -- ObjectOutputStream
+ClientTest -- ObjectInputStream
+
+@enduml
+Diese Dokumentation zeigt die Struktur der Testklasse "ClientTest" mit ihren Attributen und Methoden. Die Assoziationen zu den Klassen "Client", "Socket", "ObjectOutputStream" und "ObjectInputStream" werden ebenfalls dargestellt.
