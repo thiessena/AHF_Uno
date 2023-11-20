@@ -85,3 +85,31 @@ public class Client {
 }
 ```
 
+
+
+
+Dokumentation:
+
+@startuml
+
+class Client {
+    - socket: Socket
+    - outputStream: ObjectOutputStream
+    - inputStream: ObjectInputStream
+
+    + connect(serverIP: String, port: int): void
+    + disconnect(): void
+    + registerUser(username: String): void
+    + playCard(card: Card): void
+    + chooseColor(color: Color): void
+    + receiveTopCard(): Card
+    + receiveOtherPlayerCardCounts(): int[]
+}
+
+Client -- Socket
+Client -- ObjectOutputStream
+Client -- ObjectInputStream
+
+@enduml
+Diese Dokumentation zeigt die Struktur der Klasse "Client" mit ihren Attributen und Methoden. Die Assoziationen zu den Klassen "Socket", "ObjectOutputStream" und "ObjectInputStream" werden ebenfalls dargestellt.
+
