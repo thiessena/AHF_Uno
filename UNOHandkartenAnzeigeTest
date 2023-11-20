@@ -1,0 +1,39 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.ArrayList;
+
+public class UNOHandkartenAnzeigeTest {
+
+    @Test
+    public void testGenerateUNOHandkarten() {
+        ArrayList<String> expectedHandkarten = new ArrayList<>();
+        
+        // Farben
+        ArrayList<String> farben = new ArrayList<>(Arrays.asList("Rot", "Blau", "Grün", "Gelb"));
+        
+        // Zahlenkarten
+        for (String farbe : farben) {
+            for (int zahl = 0; zahl <= 9; zahl++) {
+                expectedHandkarten.add(farbe + " " + zahl);
+            }
+        }
+        
+        // Aktionskarten
+        for (String farbe : farben) {
+            expectedHandkarten.add(farbe + " Aussetzen");
+            expectedHandkarten.add(farbe + " Ziehe Zwei");
+            expectedHandkarten.add(farbe + " Richtungswechsel");
+        }
+        
+        // Farbe wählen Karten
+        for (int i = 0; i < 4; i++) {
+            expectedHandkarten.add("Farbe wählen");
+            expectedHandkarten.add("Farbe wählen + Vier ziehen");
+        }
+        
+        ArrayList<String> generatedHandkarten = UNOHandkartenAnzeige.generateUNOHandkarten();
+        
+        assertEquals(expectedHandkarten.size(), generatedHandkarten.size());
+        assertTrue(generatedHandkarten.containsAll(expectedHandkarten));
+    }
+}
