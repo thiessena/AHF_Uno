@@ -1,1 +1,17 @@
+@startuml
 
+class UnoController {
+    - model: UnoModel
+    - view: UnoView
+
+    + UnoController(model: UnoModel, view: UnoView)
+    + drawCard(): void
+    + playCard(): void
+    - updateView(): void
+    + main(args: String[]): void
+}
+
+UnoController -- UnoModel
+UnoController -- UnoView
+
+@enduml
