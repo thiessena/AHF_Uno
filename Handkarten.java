@@ -40,21 +40,3 @@ public class UNOHandkartenAnzeige {
         return handkarten;
     }
 }
-
-
-
-
-
-Dokumentation:
-
-
-@startuml
-
-class UNOHandkartenAnzeige {
-    + main(args: String[]): void
-    + generateUNOHandkarten(): ArrayList<String>
-}
-
-@enduml
-Diese Dokumentation zeigt die Struktur der Klasse "UNOHandkartenAnzeige" mit ihren Methoden. Es gibt keine Assoziationen zu anderen Klassen.
-
