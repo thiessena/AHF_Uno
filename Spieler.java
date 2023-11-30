@@ -1,31 +1,55 @@
-import java.util.ArrayList;
-import java.util.List;
+public class Spieler {
+    private String IP;
+    private int Port;
+    private String Benutzername;
+    private Handkarten handkarten;
+    private boolean unoGesagt;
 
-public class UNO {
-    public static void main(String[] args) {
-        List<Player> players = new ArrayList<>();
-        
-        // Spieler erstellen und zur Spielerliste hinzufügen
-        players.add(new Player("Spieler 1"));
-        players.add(new Player("Spieler 2"));
-        players.add(new Player("Spieler 3"));
-        players.add(new Player("Spieler 4"));
-        
-        // Spiel starten
-        startGame(players);
+    public Spieler(String IP, int Port, String Benutzername, Handkarten handkarten, boolean unoGesagt) {
+        this.IP = IP;
+        this.Port = Port;
+        this.Benutzername = Benutzername;
+        this.handkarten = handkarten;
+        this.unoGesagt = unoGesagt;
     }
-    
-    public static void startGame(List<Player> players) {
-        // Spiellogik hier implementieren
-    }
-}
 
-class Player {
-    private String name;
-    
-    public Player(String name) {
-        this.name = name;
+    public String getIP() {
+        return IP;
     }
-    
-    // Weitere Methoden und Eigenschaften des Spielers hier implementieren
+
+    public void setIP(String IP) {
+        this.IP = IP;
+    }
+
+    public int getPort() {
+        return Port;
+    }
+
+    public void setPort(int Port) {
+        this.Port = Port;
+    }
+
+    public String getBenutzername() {
+        return Benutzername;
+    }
+
+    public void setBenutzername(String Benutzername) {
+        this.Benutzername = Benutzername;
+    }
+
+    public Handkarten getHandkarten() {
+        return handkarten;
+    }
+
+    public void setHandkarten(Handkarten handkarten) {
+        this.handkarten = handkarten;
+    }
+
+    public boolean isUnoGesagt() {
+        return unoGesagt;
+    }
+
+    public void setUnoGesagt(boolean unoGesagt) {
+        this.unoGesagt = unoGesagt;
+    }
 }
