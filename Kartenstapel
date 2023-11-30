@@ -19,7 +19,8 @@ public class Kartenstapel {
 
     public Karten drawCard() {
         if (cards.isEmpty()) {
-            return null; // Keine Karten mehr im Stapel
+            return null; 
+// Keine Karten mehr im Stapel
         }
         return cards.remove(cards.size() - 1);
     }
