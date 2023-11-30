@@ -45,7 +45,7 @@ public class UnoController {
 }
 
 
-
+/**
 Dokumentation:
 
 @startuml
@@ -66,4 +66,4 @@ UnoController -- UnoView
 
 @enduml
 Diese Dokumentation zeigt die Struktur der Klasse "UnoController" mit ihren Attributen und Methoden. Die Assoziationen zu den Klassen "UnoModel" und "UnoView" werden ebenfalls dargestellt.
-
+*/
