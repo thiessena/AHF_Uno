@@ -89,25 +89,6 @@ public class Game {
         return card.getColor().equals(currentCard.getColor()) || card.getValue() == currentCard.getValue();
     }
 
-    private void handleSpecialCard(Card card) {
-        switch (card.getValue()) {
-            case "Skip":
-                changePlayer();
-                break;
-            case "Reverse":
-                reverse = !reverse;
-                break;
-            case "Draw Two":
-                Player nextPlayer = getNextPlayer();
-                nextPlayer.drawCards(2, drawPile);
-                break;
-            case "Wild":
-                // TODO: Implementieren Sie die Logik für die Wild-Karte
-                break;
-            case "Wild Draw Four":
-                // TODO: Implementieren Sie die Logik für die Wild Draw Four-Karte
-                break;
-        }
     }
 
     private void changePlayer() {
