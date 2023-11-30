@@ -1,30 +1,33 @@
 public class Karten {
-    private List<String> karten;
-    private List<String> farben;
-    private List<String> ziffern;
-    private List<String> sonderzeichen;
+    private String farbe; 
+    private int ziffer; 
 
-    public Karten() {
-        karten = new ArrayList<>();
-        farben = new ArrayList<>();
-        ziffern = new ArrayList<>();
-        sonderzeichen = new ArrayList<>();
+    public Karten(String pFarbe, int pZiffer) {
+        
+    }
+
+    public String getFarbe(){
+
+    }
+
+    public int getZiffer(){
+
+    }
+
+    public ArrayList<Karte> getKartenSet(){
+        ArrayList<Karte> karten = new ArrayList<>();
+        ArrayList<Karte> farben = new ArrayList<>();
+        ArrayList<Karte> ziffern = new ArrayList<>();
+        ArrayList<Karte>  sonderzeichen = new ArrayList<>();
 
         farben.add("Rot");
         farben.add("Blau");
         farben.add("Gelb");
         farben.add("Grün");
 
-        ziffern.add("0");
-        ziffern.add("1");
-        ziffern.add("2");
-        ziffern.add("3");
-        ziffern.add("4");
-        ziffern.add("5");
-        ziffern.add("6");
-        ziffern.add("7");
-        ziffern.add("8");
-        ziffern.add("9");
+        for(int i = 0; i < 10; i++){
+            ziffern.add(""+i);
+        }
 
         sonderzeichen.add("Aussetzen");
         sonderzeichen.add("Zwei ziehen");
@@ -51,25 +54,5 @@ public class Karten {
             karten.add("Schwarz " + zahl); // Füge die schwarzen Ziffernkarten hinzu
             karten.add("Schwarz " + zahl);
         }
-    }
-
-    public void mischen() {
-        Collections.shuffle(karten);
-    }
-
-    public String ziehen() {
-        if (karten.size() > 0) {
-            return karten.remove(karten.size() - 1);
-        } else {
-            return null;
-        }
-    }
-
-    public void karteHinzufuegen(String karte) {
-        karten.add(karte);
-    }
-
-    public int anzahlKarten() {
-        return karten.size();
     }
 }
