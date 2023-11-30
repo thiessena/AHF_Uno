@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game {
+public class Spiel {
     private Deck drawPile;
     private Deck discardPile;
     private ArrayList<Player> players;
@@ -9,7 +9,7 @@ public class Game {
     private boolean reverse;
     private int currentPlayerIndex;
 
-    public Game(String[] playerNames) {
+    public Spiel(String[] playerNames) {
         drawPile = new Deck();
         discardPile = new Deck();
         players = new ArrayList<>();
