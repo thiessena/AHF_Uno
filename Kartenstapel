@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Kartenstapel {
-    private List<Kartenstapel> cards;
+    private List<Karte> cards;
 
     public Kartenstapel() {
         cards = new ArrayList<>();
@@ -28,6 +28,20 @@ public class Kartenstapel {
     public int getSize() {
         return cards.size();
     }
+
+ // Methode, um zu überprüfen, ob die oberste Karte offen ist
+    public boolean istObersteKarteOffen() {
+        if (obersteKarteIndex >= 0 && obersteKarteIndex < Kartenstapel.length) {
+            return Kartenstapel[obersteKarteIndex].istOffen();
+        } else {
+            System.out.println("Stapel ist leer oder ungültiger Index.");
+            return false; // Hier könntest du je nach Anforderungen auch eine Ausnahme werfen.
+        }
+    }
+
+
 }
 
 //Diese Klasse verwendet eine andere Klasse Karten, die die einzelnen Karten repräsentiert.
+//überprüfen: ist oberste karte zu sehen oder umgedreht
+//Karte auf stapel legen
