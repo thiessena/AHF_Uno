@@ -39,7 +39,7 @@ public class Client {
         }
     }
 
-    public void playCard(Card card) {
+    public void playCard(Karte card) {
         try {
             outputStream.writeObject("PLAY_CARD");
             outputStream.writeObject(card.toNetString());
@@ -50,7 +50,7 @@ public class Client {
         }
     }
 
-    public void chooseColor(Color color) {
+    public void chooseColor(String color) {
         try {
             outputStream.writeObject("CHOOSE_COLOR");
             outputStream.writeObject(color);
@@ -83,33 +83,3 @@ public class Client {
         return null;
     }
 }
-```
-
-
-
-
-Dokumentation:
-
-@startuml
-
-class Client {
-    - socket: Socket
-    - outputStream: ObjectOutputStream
-    - inputStream: ObjectInputStream
-
-    + connect(serverIP: String, port: int): void
-    + disconnect(): void
-    + registerUser(username: String): void
-    + playCard(card: Card): void
-    + chooseColor(color: Color): void
-    + receiveTopCard(): Card
-    + receiveOtherPlayerCardCounts(): int[]
-}
-
-Client -- Socket
-Client -- ObjectOutputStream
-Client -- ObjectInputStream
-
-@enduml
-Diese Dokumentation zeigt die Struktur der Klasse "Client" mit ihren Attributen und Methoden. Die Assoziationen zu den Klassen "Socket", "ObjectOutputStream" und "ObjectInputStream" werden ebenfalls dargestellt.
-

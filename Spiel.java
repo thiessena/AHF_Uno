@@ -120,4 +120,8 @@ public class Spiel {
         }
         return players.get(nextPlayerIndex);
     }
+
+    public static void main(String[] args){
+        System.out.println("Test");
+    }
 }
