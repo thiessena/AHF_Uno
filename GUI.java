@@ -1,13 +1,24 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import javafx.scene.text.Text;
 
 public class GUI extends JFrame {
     private JButton drawCardButton;
-    private JButton playCardButton;
     private JLabel playerHandLabel;
     private JLabel playedCardsLabel;
+    JPanel buttonPanel;
+
+    private List kartenStapel = new ArrayList<>();
 
     public GUI() {
         setTitle("Uno Kartenspiel");
@@ -17,42 +28,54 @@ public class GUI extends JFrame {
 
         // Erstellen Sie die GUI-Elemente
         drawCardButton = new JButton("Karte ziehen");
-        playCardButton = new JButton("Karte spielen");
+        ArrayList<String> spielerKarten = new ArrayList<String>();
+        spielerKarten.add("1, grün");
+        spielerKarten.add("3, grün");
+        spielerKarten.add("1, gelb");
+
+
         playerHandLabel = new JLabel("Spielerhand:");
         playedCardsLabel = new JLabel("Gespielte Karten:");
 
         // Fügen Sie die GUI-Elemente dem Fenster hinzu
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(drawCardButton);
-        buttonPanel.add(playCardButton);
+        buttonPanel = new JPanel();
+        spielerKarten.add("1, grün");
+        spielerKarten.add("3, grün");
+        spielerKarten.add("1, gelb");
+        spielerKarten.add("1, rot");
+        handkartenAnzeigen(spielerKarten);
 
         JPanel labelPanel = new JPanel(new GridLayout(2, 1));
         labelPanel.add(playerHandLabel);
         labelPanel.add(playedCardsLabel);
 
+        /**
+         * drawCardButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                System.out.println("Lol");
+            }
+        });
+         */
+        
+
         add(buttonPanel, BorderLayout.SOUTH);
         add(labelPanel, BorderLayout.CENTER);
     }
 
-    public void addDrawCardListener(ActionListener listener) {
-        drawCardButton.addActionListener(listener);
-    }
-
     public void addPlayCardListener(ActionListener listener) {
-        playCardButton.addActionListener(listener);
+        //die Jeweilige Karte soll ausgespielt werden
     }
 
-    /**
-     * public void updatePlayerHand(List<Card> playerHand) {
-            // Aktualisieren Sie die Spielerhand-Anzeige entsprechend
-            // Hier können Sie die Spielerhand in einem JList oder einem anderen GUI-Element anzeigen
-        }
-
-        public void updatePlayedCards(List<Card> playedCards) {
-            // Aktualisieren Sie die gespielten Karten-Anzeige entsprechend
-            // Hier können Sie die gespielten Karten in einem JLabel oder einem anderen GUI-Element anzeigen
-        }
-     */
+    public void handkartenAnzeigen(ArrayList<String> karten){
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        
+        buttonPanel.add(drawCardButton);
+        for(int y = 0; y < karten.size(); y++){
+            buttonPanel.add(new JButton(karten.get(y).toString()));
+        }        
+    }
     
 
     public static void main(String[] args) {
