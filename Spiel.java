@@ -9,13 +9,10 @@ public class Spiel {
     private boolean reverse;
     private int aktuellerSpieler;
 
-    public Spiel(String[] playerNames) {
+    public Spiel() {
         drawPile = new Kartenstapel();
         discardPile = new Kartenstapel();
         players = new ArrayList<>();
-        for (String name : playerNames) {
-            players.add(new Spieler(name));
-        }
         reverse = false;
         aktuellerSpieler = 0;
     }
@@ -35,15 +32,15 @@ public class Spiel {
 
         // Spiele solange, bis ein Spieler gewinnt
         while (!checkWin()) {
-            Spieler currentPlayer = players.get(currentPlayerIndex);
-            System.out.println("Aktueller Spieler: " + currentPlayer.getName());
+            Spieler aktuellerSpieler = players.get(currentPlayerIndex);
+            System.out.println("Aktueller Spieler: " + aktuellerSpieler.getName());
 
             // Zeige die oberste Karte auf dem Ablagestapel an
             System.out.println("Aktuelle Karte: " + currentCard.getFarbe() + " " + currentCard.getZiffer());
 
             // Zeige die Handkarten des aktuellen Spielers an
             System.out.println("Deine Handkarten:");
-            currentPlayer.displayHand();
+            aktuellerSpieler.displayHand();
 
             // Frage den Spieler nach seinem Zug
             System.out.println("Welche Karte möchtest du spielen? (Gib die Position der Karte ein)");
@@ -51,15 +48,15 @@ public class Spiel {
             int cardIndex = scanner.nextInt();
 
             // Überprüfe, ob der Zug gültig ist
-            Card selectedCard = currentPlayer.playCard(cardIndex);
+            Card selectedCard = aktuellerSpieler.playCard(cardIndex);
             if (isValidMove(selectedCard)) {
                 // Lege die Karte auf den Ablagestapel
                 discardPile.addCard(selectedCard);
                 currentCard = selectedCard;
 
                 // Überprüfe, ob der Spieler gewonnen hat
-                if (currentPlayer.getHandSize() == 0) {
-                    System.out.println("Herzlichen Glückwunsch, " + currentPlayer.getName() + "! Du hast gewonnen!");
+                if (aktuellerSpieler.getHandSize() == 0) {
+                    System.out.println("Herzlichen Glückwunsch, " + aktuellerSpieler.getName() + "! Du hast gewonnen!");
                     break;
                 }
 
@@ -105,7 +102,7 @@ public class Spiel {
         }
     }
 
-    private Player getNextPlayer() {
+    private Spieler getNextPlayer() {
         int nextPlayerIndex;
         if (reverse) {
             nextPlayerIndex = currentPlayerIndex - 1;
