@@ -61,11 +61,11 @@ public class Client {
         }
     }
 
-    public Card receiveTopCard() {
+    public Karte receiveTopCard() {
         try {
             outputStream.writeObject("RECEIVE_TOP_CARD");
             outputStream.flush();
-            return (Card) inputStream.readObject();
+            return (Karte) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
