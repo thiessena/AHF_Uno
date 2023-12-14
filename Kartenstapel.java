@@ -31,12 +31,11 @@ public class Kartenstapel {
 
     // Methode, um zu überprüfen, ob die oberste Karte offen ist
     public boolean istObersteKarteOffen() {
-        if (obersteKarteIndex >= 0 && obersteKarteIndex < Kartenstapel.length) {
-            return Kartenstapel[obersteKarteIndex].istOffen();
-        } else {
-            System.out.println("Stapel ist leer oder ungültiger Index.");
-            return false; // Hier könntest du je nach Anforderungen auch eine Ausnahme werfen.
-        }
+    if (!cards.isEmpty()) {
+        return cards.get(cards.size() - 1).istOffen();
+    } else {
+        System.out.println("Stapel ist leer.");
+        return false; // Hier könntest du je nach Anforderungen auch eine Ausnahme werfen.
     }
 
 }
