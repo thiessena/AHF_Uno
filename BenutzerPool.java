@@ -195,3 +195,34 @@ class Spieler {
     }
 }
 
+/**
+ * Gibt den dritten Spieler im Pool zurück.
+ *
+ * @return Der dritte Spieler oder {@code null}, wenn weniger als drei Spieler im Pool sind.
+ 
+public Spieler gibDrittenSpieler() {
+    if (benutzer.size() >= 3) {
+        return benutzer.get(2);
+    } else {
+        return null;
+    }
+}
+
+public static void main(String[] args) {
+    BenutzerPool benutzerPool = new BenutzerPool();
+
+    // Füge einige Spieler hinzu (Beispielwerte)
+    benutzerPool.addBenutzer(new Spieler("Spieler1", "192.168.1.1:1234"));
+    benutzerPool.addBenutzer(new Spieler("Spieler2", "192.168.1.2:5678"));
+    benutzerPool.addBenutzer(new Spieler("Spieler3", "192.168.1.3:9876"));
+
+    // Gib den dritten Spieler aus
+    Spieler dritterSpieler = benutzerPool.gibDrittenSpieler();
+
+    if (dritterSpieler != null) {
+        System.out.println("Dritter Spieler: " + dritterSpieler.getName());
+    } else {
+        System.out.println("Es gibt weniger als drei Spieler im Pool.");
+    }
+}
+**/
