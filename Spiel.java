@@ -2,44 +2,44 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Spiel {
-    private Deck drawPile;
-    private Deck discardPile;
-    private ArrayList<Player> players;
-    private Card currentCard;
+    private Kartenstapel drawPile;
+    private Kartenstapel discardPile;
+    private ArrayList<Spieler> players;
+    private Karte currentCard;
     private boolean reverse;
-    private int currentPlayerIndex;
+    private int aktuellerSpieler;
 
     public Spiel(String[] playerNames) {
-        drawPile = new Deck();
-        discardPile = new Deck();
+        drawPile = new Kartenstapel();
+        discardPile = new Kartenstapel();
         players = new ArrayList<>();
         for (String name : playerNames) {
-            players.add(new Player(name));
+            players.add(new Spieler(name));
         }
         reverse = false;
-        currentPlayerIndex = 0;
+        aktuellerSpieler = 0;
     }
 
     public void start() {
         System.out.println("Das Spiel Uno beginnt!");
 
         // Initialisiere das Kartendeck
-        drawPile.initializeDeck();
+        drawPile.setKarten(Karte.getUnoKartenSet());
 
         // Mische das Kartendeck
         drawPile.shuffle();
 
         // Ziehe die erste Karte und lege sie auf den Ablagestapel
-        currentCard = drawPile.drawCard();
-        discardPile.addCard(currentCard);
+        currentCard = drawPile.karteZiehen();
+        discardPile.karteAuflegen(currentCard);
 
         // Spiele solange, bis ein Spieler gewinnt
         while (!checkWin()) {
-            Player currentPlayer = players.get(currentPlayerIndex);
+            Spieler currentPlayer = players.get(currentPlayerIndex);
             System.out.println("Aktueller Spieler: " + currentPlayer.getName());
 
             // Zeige die oberste Karte auf dem Ablagestapel an
-            System.out.println("Aktuelle Karte: " + currentCard.getColor() + " " + currentCard.getValue());
+            System.out.println("Aktuelle Karte: " + currentCard.getFarbe() + " " + currentCard.getZiffer());
 
             // Zeige die Handkarten des aktuellen Spielers an
             System.out.println("Deine Handkarten:");
@@ -121,7 +121,7 @@ public class Spiel {
         return players.get(nextPlayerIndex);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println("Test");
     }
 }

@@ -29,6 +29,10 @@ public class Spieler {
         this.Port = Port;
     }
 
+    public String getIPPort() {
+        return IP + ":" + Port;
+    }
+
     public String getBenutzername() {
         return Benutzername;
     }

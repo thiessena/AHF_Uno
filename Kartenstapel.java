@@ -7,22 +7,26 @@ public class Kartenstapel {
 
     public Kartenstapel() {
         cards = new ArrayList<>();
-        // Erstelle alle Karten im Uno-Deck
-
-        // Mische die Karten
-        shuffle();
     }
 
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
-    public Karten drawCard() {
+    public void setKarten(ArrayList<Karte> karten) {
+        cards = karten;
+    }
+
+    public Karte karteZiehen() {
         if (cards.isEmpty()) {
             return null;
             // Keine Karten mehr im Stapel
         }
         return cards.remove(cards.size() - 1);
+    }
+
+    public void karteAuflegen(Karte k) {
+        // toDo;
     }
 
     public int getSize() {
@@ -31,13 +35,13 @@ public class Kartenstapel {
 
     // Methode, um zu überprüfen, ob die oberste Karte offen ist
     public boolean istObersteKarteOffen() {
-    if (!cards.isEmpty()) {
-        return cards.get(cards.size() - 1).istOffen();
-    } else {
-        System.out.println("Stapel ist leer.");
-        return false; // Hier könntest du je nach Anforderungen auch eine Ausnahme werfen.
+        if (!cards.isEmpty()) {
+            return cards.get(cards.size() - 1).isOffen();
+        } else {
+            System.out.println("Stapel ist leer.");
+            return false; // Hier könntest du je nach Anforderungen auch eine Ausnahme werfen.
+        }
     }
-
 }
 
 // Diese Klasse verwendet eine andere Klasse Karten, die die einzelnen Karten
