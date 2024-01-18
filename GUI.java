@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import javafx.scene.text.Text;
 
 public class GUI extends JFrame {
     private JButton drawCardButton;
@@ -49,14 +49,20 @@ public class GUI extends JFrame {
         labelPanel.add(playerHandLabel);
         labelPanel.add(playedCardsLabel);
 
-        /**
-         * drawCardButton.addActionListener(new ActionListener() {
-            @Override
+
+
+        
+        drawCardButton.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e){
-                System.out.println("Lol");
+                addCard();
+            }
+
+            public void addCard(){
+                spielerKarten.add("1, rot");
+                handkartenAnzeigen(spielerKarten);
             }
         });
-         */
         
 
         add(buttonPanel, BorderLayout.SOUTH);
