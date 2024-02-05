@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class GUI extends JFrame implements ActionListener {
     private JButton drawCardButton;
     JPanel buttonPanel;
@@ -36,17 +35,14 @@ public class GUI extends JFrame implements ActionListener {
         buttonPanel = new JPanel();
         JButton k0 = new JButton("1, rot");
         k0.addActionListener(this);
-        k0.setActionCommand("Button "+i);
+        k0.setActionCommand("Button " + i);
         spielerKartenPanel.add(k0);
         handkartenAnzeigen(spielerKartenPanel);
 
         JPanel labelPanel = new JPanel(new GridLayout(2, 1));
 
-
-
-        
         drawCardButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 spielerKartenPanel.add(new JButton("9, grün"));
                 buttonPanel.add(spielerKartenPanel.get(spielerKartenPanel.size() - 1));
                 buttonPanel.updateUI();
@@ -54,28 +50,27 @@ public class GUI extends JFrame implements ActionListener {
             }
         });
 
-        for(int i = 0; i < spielerKartenPanel.size(); i++){
+        for (int i = 0; i < spielerKartenPanel.size(); i++) {
             spielerKartenPanel.get(i).addActionListener(this);
         }
-        
 
         add(buttonPanel, BorderLayout.SOUTH);
         add(labelPanel, BorderLayout.CENTER);
     }
 
     public void addPlayCardListener(ActionListener listener) {
-        //die Jeweilige Karte soll ausgespielt werden
+        // die Jeweilige Karte soll ausgespielt werden
     }
 
-    public void handkartenAnzeigen(ArrayList<JButton> karten){
+    public void handkartenAnzeigen(ArrayList<JButton> karten) {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        
+
         buttonPanel.add(drawCardButton);
-        for(int i = 0; i <= karten.size()-1; i++){
+        for (int i = 0; i <= karten.size() - 1; i++) {
             buttonPanel.add(karten.get(i));
         }
-           
+
     }
 
     @Override
@@ -89,8 +84,7 @@ public class GUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         // UnoModel model = new UnoModel();
         GUI view = new GUI();
-        //Controller controller = new Controller(model, view);
+        // Controller controller = new Controller(model, view);
         view.setVisible(true);
     }
 }
-

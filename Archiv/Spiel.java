@@ -1,34 +1,31 @@
+package Archiv;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Spiel {
-    private Kartenstapel drawPile;
-    private Kartenstapel discardPile;
+    private Kartenstapel nachZiehStapel;
+    private Kartenstapel ablageStapel;
     private ArrayList<Spieler> players;
     private Karte currentCard;
     private boolean reverse;
-    private int aktuellerSpieler;
+    private Spieler aktuellerSpieler;
 
     public Spiel() {
-        drawPile = new Kartenstapel();
-        discardPile = new Kartenstapel();
+        nachZiehStapel = new Kartenstapel();
+        ablageStapel = new Kartenstapel();
         players = new ArrayList<>();
         reverse = false;
-        aktuellerSpieler = 0;
+        aktuellerSpieler = null;
     }
 
     public void start() {
         System.out.println("Das Spiel Uno beginnt!");
-
-        // Initialisiere das Kartendeck
-        drawPile.setKarten(Karte.getUnoKartenSet());
-
-        // Mische das Kartendeck
-        drawPile.shuffle();
-
+        nachZiehStapel.setKarten(Karte.getUnoKartenSet());// Initialisiere das Kartendeck
+        nachZiehStapel.shuffle();// Mische das Kartendeck
         // Ziehe die erste Karte und lege sie auf den Ablagestapel
-        currentCard = drawPile.karteZiehen();
-        discardPile.karteAuflegen(currentCard);
+        currentCard = nachZiehStapel.karteZiehen();
+        ablageStapel.karteAuflegen(currentCard);
 
         // Spiele solange, bis ein Spieler gewinnt
         while (!checkWin()) {
@@ -48,10 +45,10 @@ public class Spiel {
             int cardIndex = scanner.nextInt();
 
             // Überprüfe, ob der Zug gültig ist
-            Card selectedCard = aktuellerSpieler.playCard(cardIndex);
+            Karte selectedCard = aktuellerSpieler.playCard(cardIndex);
             if (isValidMove(selectedCard)) {
                 // Lege die Karte auf den Ablagestapel
-                discardPile.addCard(selectedCard);
+                ablageStapel.addCard(selectedCard);
                 currentCard = selectedCard;
 
                 // Überprüfe, ob der Spieler gewonnen hat
@@ -74,8 +71,8 @@ public class Spiel {
     }
 
     private boolean checkWin() {
-        for (Player player : players) {
-            if (player.getHandSize() == 0) {
+        for (Spieler player : players) {
+            if (player.getHandkarten().getAnzahl() == 0) {
                 return true;
             }
         }

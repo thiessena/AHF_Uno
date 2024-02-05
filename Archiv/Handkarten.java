@@ -1,3 +1,5 @@
+package Archiv;
+
 import java.util.ArrayList;
 
 /**
@@ -52,6 +54,10 @@ public class Handkarten {
 
     public ArrayList<Karte> getAusgewaehlteKarten() {
         return ausgewaehlteKarten;
+    }
+
+    public int getAnzahl() {
+        return karten.size();
     }
 
 }

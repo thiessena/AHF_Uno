@@ -1,3 +1,5 @@
+package Archiv;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -10,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 
 public class GUI extends JFrame {
     private JButton drawCardButton;
@@ -33,7 +34,6 @@ public class GUI extends JFrame {
         spielerKarten.add("3, grün");
         spielerKarten.add("1, gelb");
 
-
         playerHandLabel = new JLabel("Spielerhand:");
         playedCardsLabel = new JLabel("Gespielte Karten:");
 
@@ -49,45 +49,40 @@ public class GUI extends JFrame {
         labelPanel.add(playerHandLabel);
         labelPanel.add(playedCardsLabel);
 
-
-
-        
         drawCardButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 addCard();
             }
 
-            public void addCard(){
+            public void addCard() {
                 spielerKarten.add("1, rot");
                 handkartenAnzeigen(spielerKarten);
             }
         });
-        
 
         add(buttonPanel, BorderLayout.SOUTH);
         add(labelPanel, BorderLayout.CENTER);
     }
 
     public void addPlayCardListener(ActionListener listener) {
-        //die Jeweilige Karte soll ausgespielt werden
+        // die Jeweilige Karte soll ausgespielt werden
     }
 
-    public void handkartenAnzeigen(ArrayList<String> karten){
+    public void handkartenAnzeigen(ArrayList<String> karten) {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        
+
         buttonPanel.add(drawCardButton);
-        for(int y = 0; y < karten.size(); y++){
+        for (int y = 0; y < karten.size(); y++) {
             buttonPanel.add(new JButton(karten.get(y).toString()));
-        }        
+        }
     }
-    
 
     public static void main(String[] args) {
         // UnoModel model = new UnoModel();/
         GUI view = new GUI();
-        //Controller controller = new Controller(model, view);
+        // Controller controller = new Controller(model, view);
         view.setVisible(true);
     }
 }
