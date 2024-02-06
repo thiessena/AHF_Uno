@@ -31,6 +31,18 @@ public class Handkarten {
         }
     }
 
+    public UnoKarte getKarte(int nummer){
+        return karten.get(nummer);
+    }
+
+    public void karteHinzufuegen(UnoKarte karte){
+        karten.add(karte);
+    }
+
+    public void kartenHinzufuegen(ArrayList<UnoKarte> karten){
+        karten.addAll(karten);
+    }
+
     public void karteAbwaehlen(int index) {
         if (!ausgewaehlteKarten.contains(karten.get(index))) {
             ausgewaehlteKarten.remove(karten.get(index));
@@ -53,6 +65,10 @@ public class Handkarten {
 
     public ArrayList<UnoKarte> getAusgewaehlteKarten() {
         return ausgewaehlteKarten;
+    }
+
+    public ArrayList<UnoKarte> getKarten(){
+        return karten;
     }
 
     public int getAnzahl() {

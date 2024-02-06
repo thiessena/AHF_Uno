@@ -27,7 +27,8 @@ public class UnoKarte {
     }
 
     public String toString() {
-        return "(" + farbe + "|" + ziffer + ")";
+
+        return offen ? "(" + farbe + "|" + ziffer + ")" : "(XXXX X)";
     }
 
     public String toNetString(){

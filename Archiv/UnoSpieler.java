@@ -6,6 +6,12 @@ public class UnoSpieler {
     private Handkarten handkarten;
     private boolean unoGesagt;
 
+    public UnoSpieler(String benutzername) {
+        this.Benutzername = benutzername;
+        this.handkarten = new Handkarten();
+        this.unoGesagt = false;
+    }
+
     public UnoSpieler(String IP, int Port, String benutzername, Handkarten handkarten, boolean unoGesagt) {
         this.IP = IP;
         this.Port = Port;
