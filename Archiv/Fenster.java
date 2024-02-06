@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-AQQQQQ
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
