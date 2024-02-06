@@ -1,4 +1,3 @@
-package Archiv;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -7,13 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-
+AQQQQQ
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class GUI extends JFrame {
+public class Fenster extends JFrame {
     private JButton drawCardButton;
     private JLabel playerHandLabel;
     private JLabel playedCardsLabel;
@@ -21,7 +20,7 @@ public class GUI extends JFrame {
 
     private List kartenStapel = new ArrayList<>();
 
-    public GUI() {
+    public Fenster() {
         setTitle("Uno Kartenspiel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);

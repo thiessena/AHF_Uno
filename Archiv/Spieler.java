@@ -1,4 +1,3 @@
-package Archiv;
 
 public class Spieler {
     private String IP;

@@ -1,44 +1,44 @@
-package Archiv;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Kartenstapel {
-    private List<Karte> cards;
+    // Die erste Karte ist unten, die letzte Karte liegt oben.
+    private List<Karte> karten;
 
     public Kartenstapel() {
-        cards = new ArrayList<>();
+        karten = new ArrayList<>();
     }
 
     public void shuffle() {
-        Collections.shuffle(cards);
+        Collections.shuffle(karten);
     }
 
     public void setKarten(ArrayList<Karte> karten) {
-        cards = karten;
+        this.karten = karten;
     }
 
     public Karte karteZiehen() {
-        if (cards.isEmpty()) {
+        if (karten.isEmpty()) {
             return null;
             // Keine Karten mehr im Stapel
         }
-        return cards.remove(cards.size() - 1);
+        return karten.remove(karten.size() - 1);
     }
 
     public void karteAuflegen(Karte k) {
-        // toDo;
+        karten.add(k);
     }
 
     public int getSize() {
-        return cards.size();
+        return karten.size();
     }
 
     // Methode, um zu überprüfen, ob die oberste Karte offen ist
     public boolean istObersteKarteOffen() {
-        if (!cards.isEmpty()) {
-            return cards.get(cards.size() - 1).isOffen();
+        if (!karten.isEmpty()) {
+            Karte k = karten.get(karten.size() - 1);
+            return k.isOffen();
         } else {
             System.out.println("Stapel ist leer.");
             return false; // Hier könntest du je nach Anforderungen auch eine Ausnahme werfen.

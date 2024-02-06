@@ -1,5 +1,3 @@
-package Archiv;
-
 import java.util.ArrayList;
 
 /**

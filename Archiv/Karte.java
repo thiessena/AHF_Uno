@@ -1,5 +1,3 @@
-package Archiv;
-
 import java.util.ArrayList;
 
 public class Karte {
@@ -40,7 +38,8 @@ public class Karte {
     public static ArrayList<Karte> getUnoKartenSet() {
         ArrayList<Karte> karten = new ArrayList<>();
         String[] farben = { "rot", "blau", "gelb", "grün" };
-        String[] sonderzeichen = { "Aussetzen", "Zwei ziehen", "Vier ziehen", "Richtungswechsel", "Farbwechsel" };
+        // String[] sonderzeichen = { "Aussetzen", "Zwei ziehen", "Vier ziehen",
+        // "Richtungswechsel", "Farbwechsel" };
 
         for (int f = 0; f < farben.length; f++) {
             for (int z = 0; z < 9; z++) {

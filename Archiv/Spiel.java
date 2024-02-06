@@ -1,4 +1,3 @@
-package Archiv;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -79,13 +78,12 @@ public class Spiel {
         return false;
     }
 
-    private boolean isValidMove(Card card) {
-        return card.getColor().equals(currentCard.getColor()) || card.getValue() == currentCard.getValue();
+    public boolean isValidMove(Karte card) {
+        return card.getFarbe().equals(currentCard.getFarbe())
+                || card.getZiffer() == currentCard.getZiffer();
     }
 
-    }
-
-    private void changePlayer() {
+    public void changePlayer() {
         if (reverse) {
             currentPlayerIndex--;
             if (currentPlayerIndex < 0) {
