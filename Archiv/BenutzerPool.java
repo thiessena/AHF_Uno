@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Benutzer abgerufen werden.
  */
 public class BenutzerPool {
-    private ArrayList<Spieler> benutzer;
+    private ArrayList<UnoSpieler> benutzer;
 
     /**
      * Konstruktor für die {@code BenutzerPool}-Klasse. Initialisiert die interne
@@ -24,7 +24,7 @@ public class BenutzerPool {
      *
      * @param spieler Der hinzuzufügende Spieler.
      */
-    public void addBenutzer(Spieler spieler) {
+    public void addBenutzer(UnoSpieler spieler) {
         benutzer.add(spieler);
     }
 
@@ -33,7 +33,7 @@ public class BenutzerPool {
      *
      * @param spieler Der zu entfernende Spieler.
      */
-    public void removeBenutzer(Spieler spieler) {
+    public void removeBenutzer(UnoSpieler spieler) {
         benutzer.remove(spieler);
     }
 
@@ -42,7 +42,7 @@ public class BenutzerPool {
      */
     public void printBenutzer() {
         System.out.println("Benutzerliste:");
-        for (Spieler spieler : benutzer) {
+        for (UnoSpieler spieler : benutzer) {
             System.out.println(spieler.getBenutzername());
         }
     }
@@ -54,8 +54,8 @@ public class BenutzerPool {
      * @return Der gefundene Spieler oder {@code null}, wenn kein Spieler mit dem
      *         angegebenen Namen gefunden wurde.
      */
-    public Spieler gibSpielerMitName(String name) {
-        for (Spieler spieler : benutzer) {
+    public UnoSpieler gibSpielerMitName(String name) {
+        for (UnoSpieler spieler : benutzer) {
             if (spieler.getBenutzername().equals(name)) {
                 return spieler;
             }
@@ -70,8 +70,8 @@ public class BenutzerPool {
      * @return Der gefundene Spieler oder {@code null}, wenn kein Spieler mit der
      *         angegebenen IP-Adresse und Portnummer gefunden wurde.
      */
-    public Spieler gibSpielerMitIPPort(String ipPort) {
-        for (Spieler spieler : benutzer) {
+    public UnoSpieler gibSpielerMitIPPort(String ipPort) {
+        for (UnoSpieler spieler : benutzer) {
             if (spieler.getIPPort().equals(ipPort)) {
                 return spieler;
             }
@@ -84,7 +84,7 @@ public class BenutzerPool {
      *
      * @return Eine ArrayList mit allen Benutzern im Pool.
      */
-    public ArrayList<Spieler> gibAlleSpieler() {
+    public ArrayList<UnoSpieler> gibAlleSpieler() {
         return benutzer;
     }
 }

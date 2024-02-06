@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Verwaltet die Handkarten
  */
 public class Handkarten {
-    ArrayList<Karte> karten = new ArrayList<Karte>();
-    ArrayList<Karte> ausgewaehlteKarten = new ArrayList<Karte>();
+    ArrayList<UnoKarte> karten = new ArrayList<UnoKarte>();
+    ArrayList<UnoKarte> ausgewaehlteKarten = new ArrayList<UnoKarte>();
 
     public void sortieren() {
 
@@ -19,8 +19,8 @@ public class Handkarten {
      * @param index
      * @return
      */
-    public Karte ziehen(int index) {
-        Karte k = karten.get(index);
+    public UnoKarte ziehen(int index) {
+        UnoKarte k = karten.get(index);
         karten.remove(index);
         return k;
     }
@@ -42,7 +42,7 @@ public class Handkarten {
      * 
      * @param karten
      */
-    public void kartenAuswaehlen(ArrayList<Karte> karten) {
+    public void kartenAuswaehlen(ArrayList<UnoKarte> karten) {
         ausgewaehlteKarten.removeAll(karten);
         ausgewaehlteKarten.addAll(karten);
     }
@@ -51,7 +51,7 @@ public class Handkarten {
         ausgewaehlteKarten = new ArrayList<>();
     }
 
-    public ArrayList<Karte> getAusgewaehlteKarten() {
+    public ArrayList<UnoKarte> getAusgewaehlteKarten() {
         return ausgewaehlteKarten;
     }
 

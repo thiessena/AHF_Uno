@@ -20,7 +20,7 @@ public class Spieler {
         }
     }
 
-    public void KarteSpielen() {
+    public void karteSpielen() {
         // if()
     }
 

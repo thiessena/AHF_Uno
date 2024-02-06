@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Fenster extends JFrame {
+public class GUISpiel extends JFrame {
     private JButton drawCardButton;
     private JLabel playerHandLabel;
     private JLabel playedCardsLabel;
@@ -20,7 +20,7 @@ public class Fenster extends JFrame {
 
     private List kartenStapel = new ArrayList<>();
 
-    public Fenster() {
+    public GUISpiel() {
         setTitle("Uno Kartenspiel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);

@@ -1,15 +1,15 @@
 
-public class Spieler {
+public class UnoSpieler {
     private String IP;
     private int Port;
     private String Benutzername;
     private Handkarten handkarten;
     private boolean unoGesagt;
 
-    public Spieler(String IP, int Port, String Benutzername, Handkarten handkarten, boolean unoGesagt) {
+    public UnoSpieler(String IP, int Port, String benutzername, Handkarten handkarten, boolean unoGesagt) {
         this.IP = IP;
         this.Port = Port;
-        this.Benutzername = Benutzername;
+        this.Benutzername = benutzername;
         this.handkarten = handkarten;
         this.unoGesagt = unoGesagt;
     }

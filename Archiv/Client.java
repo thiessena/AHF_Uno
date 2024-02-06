@@ -39,7 +39,7 @@ public class Client {
         }
     }
 
-    public void playCard(Karte card) {
+    public void playCard(UnoKarte card) {
         try {
             outputStream.writeObject("PLAY_CARD");
             outputStream.writeObject(card.toNetString());
