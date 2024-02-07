@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Spiel {
     private Kartenstapel nachZiehStapel;
@@ -11,8 +10,8 @@ public class Spiel {
     private KonsolenView kView;
 
     public Spiel(KonsolenView kView) {
-        nachZiehStapel = new Kartenstapel();
-        ablageStapel = new Kartenstapel();
+        nachZiehStapel = new Kartenstapel(false);
+        ablageStapel = new Kartenstapel(true);
         players = new ArrayList<>();
         reverse = false;
         aktuellerSpieler = null;
@@ -38,6 +37,7 @@ public class Spiel {
     public void start() {
         // Initialisiere das Kartendeck
         nachZiehStapel.setKarten(UnoKarte.getUnoKartenSet());
+        System.out.println(nachZiehStapel.toString());
         // Mische das Kartendeck
         nachZiehStapel.shuffle();
         // Ziehe die erste Karte und lege sie auf den Ablagestapel
@@ -46,7 +46,10 @@ public class Spiel {
         aktuellerSpieler = players.get(0);
         //Spielern die Handkarten geben
         for(UnoSpieler spieler : players){
-            spieler.getHandkarten().kartenHinzufuegen(nachZiehStapel.kartenZiehen(5));
+            ArrayList<UnoKarte> gezogeneKarten = nachZiehStapel.kartenZiehen(5); 
+            spieler.getHandkarten().kartenHinzufuegen(gezogeneKarten);
+            System.out.println(spieler.getHandkarten().toString());
+            System.out.println(spieler.getBenutzername() + "hat jetzt " + spieler.getHandkarten().getAnzahl() + " Karten auf der Hand");
         }
     }
 
@@ -59,6 +62,10 @@ public class Spiel {
             return true;
         }
         return false;
+    }
+
+    public void spielerZiehtKarte(){
+        aktuellerSpieler.getHandkarten().karteHinzufuegen(nachZiehStapel.karteZiehen());
     }
 
     public boolean moeglicheKarten(){
@@ -86,12 +93,12 @@ public class Spiel {
         }
     }
 
-    public boolean gewinnerVorhanden() {
+    public UnoSpieler gewinnerVorhanden() {
         for (UnoSpieler player : players) {
             if (player.getHandkarten().getAnzahl() == 0) {
-                return true;
+                return player;
             }
         }
-        return false;
+        return null;
     }
 }

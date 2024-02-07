@@ -5,9 +5,11 @@ import java.util.List;
 public class Kartenstapel {
     // Die erste Karte ist unten, die letzte Karte liegt oben.
     private List<UnoKarte> karten;
+    private boolean offen;
 
-    public Kartenstapel() {
+    public Kartenstapel(boolean offen) {
         karten = new ArrayList<>();
+        this.offen = offen;
     }
 
     public void shuffle() {
@@ -19,23 +21,26 @@ public class Kartenstapel {
     }
 
     public UnoKarte getObersteKarte(){
-        return karten.get(0).isOffen() ? karten.get(0) : null;
+        UnoKarte k = karten.get(karten.size() - 1); 
+        k.setOffen(offen);
+        return k;
     }
 
     public UnoKarte karteZiehen() {
-        if (karten.isEmpty()) {
+        if (karten.size() == 0) {
             return null;
-            // Keine Karten mehr im Stapel
         }
-        return karten.remove(karten.size() - 1);
+        UnoKarte k = karten.get(karten.size()-1);
+        karten.remove(karten.size() - 1);
+        return k;
     }
 
     public ArrayList<UnoKarte> kartenZiehen(int anzahl){
-        ArrayList<UnoKarte> karten = new ArrayList<>(); 
+        ArrayList<UnoKarte> ziehkarten = new ArrayList<>(); 
         for(int i = 0; i < anzahl && i < karten.size(); i++){
-            karten.add(karteZiehen());
+            ziehkarten.add(karteZiehen());
         }
-        return karten;
+        return ziehkarten;
     }
 
     public void karteAuflegen(UnoKarte k) {
@@ -65,10 +70,11 @@ public class Kartenstapel {
         if (karten.size() == 0) {
             return "-"; 
         }
-        text += karten.get(0); 
-        for(int i = 0; i < karten.size() && i < 4; i++){
+        
+        text += karten.get(karten.size()-1).toString(); 
+        for(int i = 0; i < karten.size() && i < 3; i++){
             text+="|";
         }
-        return text;
+        return text + karten.size()+"|";
     }
 }

@@ -42,6 +42,7 @@ public class KonsolenView{
     public void spielzug(){
         if(!spiel.moeglicheKarten()){
             System.out.println("Du kannst nichts legen") ;
+            spiel.spielerZiehtKarte();
             spiel.naechsteSpieler();
             return;
         }
@@ -53,13 +54,20 @@ public class KonsolenView{
         spiel.naechsteSpieler();
     }
 
+    public void siegerAngeben(){
+        System.out.println("Der Spieler " + spiel.gewinnerVorhanden().getBenutzername() + " hat gewonnen."); 
+        System.out.println("Die anderen Spieler haben noch Karten:"); 
+    }
+
     public void game(){
         start();
         spiel.start();
-        while(!spiel.gewinnerVorhanden()){
+        while(spiel.gewinnerVorhanden() == null){
             showSpiel();
             spielzug();    
         }
+        siegerAngeben();
+        
     }
 
     

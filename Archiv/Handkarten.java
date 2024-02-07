@@ -5,8 +5,23 @@ import java.util.ArrayList;
  * Verwaltet die Handkarten
  */
 public class Handkarten {
-    ArrayList<UnoKarte> karten = new ArrayList<UnoKarte>();
-    ArrayList<UnoKarte> ausgewaehlteKarten = new ArrayList<UnoKarte>();
+    private ArrayList<UnoKarte> karten;
+
+    public Handkarten(){
+        karten = new ArrayList<UnoKarte>();
+    }
+
+    public Handkarten(ArrayList<UnoKarte> karten){
+        this.karten = karten;
+    }
+
+    public ArrayList<UnoKarte> getKarten(){
+        return karten;
+    }
+
+    public int getAnzahl() {
+        return karten.size();
+    }
 
     public void sortieren() {
 
@@ -25,54 +40,27 @@ public class Handkarten {
         return k;
     }
 
-    public void karteAuswaehlen(int index) {
-        if (!ausgewaehlteKarten.contains(karten.get(index))) {
-            ausgewaehlteKarten.add(karten.get(index));
-        }
-    }
-
     public UnoKarte getKarte(int nummer){
         return karten.get(nummer);
     }
 
     public void karteHinzufuegen(UnoKarte karte){
+        karte.setOffen(true);
         karten.add(karte);
     }
 
     public void kartenHinzufuegen(ArrayList<UnoKarte> karten){
-        karten.addAll(karten);
-    }
-
-    public void karteAbwaehlen(int index) {
-        if (!ausgewaehlteKarten.contains(karten.get(index))) {
-            ausgewaehlteKarten.remove(karten.get(index));
+        for( UnoKarte k: karten){
+            k.setOffen(true);
+            this.karten.add(k);
         }
     }
 
-    /**
-     * Wählt die Karten aus, die
-     * 
-     * @param karten
-     */
-    public void kartenAuswaehlen(ArrayList<UnoKarte> karten) {
-        ausgewaehlteKarten.removeAll(karten);
-        ausgewaehlteKarten.addAll(karten);
+    public String toString(){
+        String text = "Handkarten:   "; 
+        for(UnoKarte k: karten){
+            text += "  " + k.toString() ; 
+        }
+        return text;
     }
-
-    public void alleKartenAbwaehlen() {
-        ausgewaehlteKarten = new ArrayList<>();
-    }
-
-    public ArrayList<UnoKarte> getAusgewaehlteKarten() {
-        return ausgewaehlteKarten;
-    }
-
-    public ArrayList<UnoKarte> getKarten(){
-        return karten;
-    }
-
-    public int getAnzahl() {
-        return karten.size();
-    }
-
 }
