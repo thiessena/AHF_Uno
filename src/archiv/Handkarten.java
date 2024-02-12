@@ -1,4 +1,4 @@
-
+package archiv;
 import java.util.ArrayList;
 
 /**
@@ -11,14 +11,26 @@ public class Handkarten {
         karten = new ArrayList<UnoKarte>();
     }
 
+    /**
+     * Erstellt Handkarten aus einer ArrayList
+     * @param karten
+     */
     public Handkarten(ArrayList<UnoKarte> karten){
         this.karten = karten;
     }
 
+    /**
+     * Gibt die Handkarten als ArrayList zurück.
+     * @return
+     */
     public ArrayList<UnoKarte> getKarten(){
         return karten;
     }
 
+    /**
+     * Gibt die Anzahl der Karten in der Hand zurück.
+     * @return
+     */
     public int getAnzahl() {
         return karten.size();
     }
@@ -40,15 +52,28 @@ public class Handkarten {
         return k;
     }
 
+    /**
+     * Gibt die Karte an der Position nummer zurück.
+     * @param nummer
+     * @return
+     */
     public UnoKarte getKarte(int nummer){
         return karten.get(nummer);
     }
 
+    /**
+     * Fügt eine offene Karte ganz hinten an die Karte hinzu.
+     * @param karte
+     */
     public void karteHinzufuegen(UnoKarte karte){
         karte.setOffen(true);
         karten.add(karte);
     }
 
+    /**
+     * Fügt eine ArrayListe von Karten zur Hand hinzu.
+     * @param karten
+     */
     public void kartenHinzufuegen(ArrayList<UnoKarte> karten){
         for( UnoKarte k: karten){
             k.setOffen(true);
@@ -56,6 +81,9 @@ public class Handkarten {
         }
     }
 
+    /**
+     * Gibt einen String der Handkarten zurück.
+     */
     public String toString(){
         String text = "Handkarten:   "; 
         for(UnoKarte k: karten){

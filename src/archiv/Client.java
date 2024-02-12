@@ -1,5 +1,7 @@
+package archiv;
 import java.io.*;
 import java.net.Socket;
+
 
 public class Client {
     private Socket socket;
@@ -61,11 +63,11 @@ public class Client {
         }
     }
 
-    public Karte receiveTopCard() {
+    public UnoKarte receiveTopCard() {
         try {
             outputStream.writeObject("RECEIVE_TOP_CARD");
             outputStream.flush();
-            return (Karte) inputStream.readObject();
+            return (UnoKarte) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

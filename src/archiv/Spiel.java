@@ -1,4 +1,4 @@
-
+package archiv;
 import java.util.ArrayList;
 
 public class Spiel {
@@ -22,8 +22,20 @@ public class Spiel {
         players.add(uSpieler);
     }
 
+    public static Spiel getDefaultSpiel(KonsolenView kView){
+        Spiel s = new Spiel(kView); 
+        s.addSpieler(new UnoSpieler("a"));
+        s.addSpieler(new UnoSpieler("b"));
+        s.start();
+        return s;
+    }
+
     public UnoSpieler getAktuellerSpieler(){
         return aktuellerSpieler;
+    }
+
+    public ArrayList<UnoSpieler> getAlleSpieler(){
+        return players; 
     }
 
     public Kartenstapel getAblagestapel(){
@@ -36,7 +48,7 @@ public class Spiel {
 
     public void start() {
         // Initialisiere das Kartendeck
-        nachZiehStapel.setKarten(UnoKarte.getUnoKartenSet());
+        nachZiehStapel.kartenAuflegen(UnoKarte.getUnoKartenSet());
         System.out.println(nachZiehStapel.toString());
         // Mische das Kartendeck
         nachZiehStapel.shuffle();
@@ -49,19 +61,22 @@ public class Spiel {
             ArrayList<UnoKarte> gezogeneKarten = nachZiehStapel.kartenZiehen(5); 
             spieler.getHandkarten().kartenHinzufuegen(gezogeneKarten);
             System.out.println(spieler.getHandkarten().toString());
-            System.out.println(spieler.getBenutzername() + "hat jetzt " + spieler.getHandkarten().getAnzahl() + " Karten auf der Hand");
         }
     }
 
     public boolean karteSpielen(int kartenNummer){
+        if(kartenNummer < 0)
+            return false;
+        if(kartenNummer > aktuellerSpieler.getHandkarten().getAnzahl())
+            return false; 
         UnoKarte karte = aktuellerSpieler.getHandkarten().getKarte(kartenNummer); 
-        if(erlaubteKarte(karte)){
-            karte = aktuellerSpieler.getHandkarten().ziehen(kartenNummer);
-            ablageStapel.karteAuflegen(karte);
-            naechsteSpieler();
-            return true;
-        }
-        return false;
+        if(!erlaubteKarte(karte))
+            return false; 
+        //Der reguläre Fall, wenn die Karte gelegt werden kann
+        karte = aktuellerSpieler.getHandkarten().ziehen(kartenNummer);
+        ablageStapel.karteAuflegen(karte);
+        naechsteSpieler();
+        return true;
     }
 
     public void spielerZiehtKarte(){
@@ -85,12 +100,9 @@ public class Spiel {
 
     public void naechsteSpieler() {
         int pos = players.indexOf(aktuellerSpieler);
-        pos = reverse ? pos -1 : pos + 1; 
-        if(pos < 0){
-            aktuellerSpieler = players.get(players.size()-1);
-        }else{
-            aktuellerSpieler = players.get(pos);
-        }
+        pos += reverse ? -1 : 1; 
+        pos = pos % players.size();
+        aktuellerSpieler = players.get(pos);
     }
 
     public UnoSpieler gewinnerVorhanden() {

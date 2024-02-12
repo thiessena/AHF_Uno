@@ -1,4 +1,5 @@
 
+package archiv;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -80,7 +81,7 @@ public class GUISpiel extends JFrame {
 
     public static void main(String[] args) {
         // UnoModel model = new UnoModel();/
-        GUI view = new GUI();
+        GUISpiel view = new GUISpiel();
         // Controller controller = new Controller(model, view);
         view.setVisible(true);
     }

@@ -1,3 +1,4 @@
+package archiv;
 import java.util.ArrayList;
 
 public class UnoKarte {
@@ -8,6 +9,7 @@ public class UnoKarte {
     public UnoKarte(String pFarbe, int pZiffer) {
         this.farbe = pFarbe;
         this.ziffer = pZiffer;
+        offen = true;
     }
 
     public String getFarbe() {

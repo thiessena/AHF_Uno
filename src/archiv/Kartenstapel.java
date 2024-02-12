@@ -1,3 +1,4 @@
+package archiv;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,12 +13,29 @@ public class Kartenstapel {
         this.offen = offen;
     }
 
-    public void shuffle() {
-        Collections.shuffle(karten);
+    /**
+     * Legt die Karte k auf den Kartenstapel, die Karte wird passen auf den Stapel gelegt. 
+     * Entweder aufgedeckt oder zu.
+     * @param k
+     */
+    public void karteAuflegen(UnoKarte k) {
+        k.setOffen(offen);
+        karten.add(k);
     }
 
-    public void setKarten(ArrayList<UnoKarte> karten) {
+    public void kartenAuflegen(ArrayList<UnoKarte> karten){
+        for(UnoKarte k: karten){
+            k.setOffen(offen);
+        }
         this.karten = karten;
+    }
+
+    public int getSize() {
+        return karten.size();
+    }
+
+    public void shuffle() {
+        Collections.shuffle(karten);
     }
 
     public UnoKarte getObersteKarte(){
@@ -37,18 +55,14 @@ public class Kartenstapel {
 
     public ArrayList<UnoKarte> kartenZiehen(int anzahl){
         ArrayList<UnoKarte> ziehkarten = new ArrayList<>(); 
-        for(int i = 0; i < anzahl && i < karten.size(); i++){
-            ziehkarten.add(karteZiehen());
+        for(int i = 0;i < anzahl; i++){
+            UnoKarte k = karteZiehen();
+            if (k == null){
+                break;
+            }
+            ziehkarten.add(k);
         }
         return ziehkarten;
-    }
-
-    public void karteAuflegen(UnoKarte k) {
-        karten.add(k);
-    }
-
-    public int getSize() {
-        return karten.size();
     }
 
     // Methode, um zu überprüfen, ob die oberste Karte offen ist
