@@ -42,15 +42,15 @@ public class KonsolenView{
         if(!spiel.moeglicheKarten()){
             System.out.println("= ! Du kannst nichts legen") ;
             spiel.spielerZiehtKarte();
-            spiel.naechsteSpieler();
             return;
         }
+        
         System.out.print("= Gib die Nummer der Handkarte (von links)ein: ");
         int kartenNummer = eingabe.nextInt(); 
         if(!spiel.karteSpielen(kartenNummer-1)){
             System.out.println("= ! Diese Karte kann nicht gelegt werden");
+            return;
         }
-        spiel.naechsteSpieler();
     }
 
     public void siegerAngeben(){
@@ -63,13 +63,11 @@ public class KonsolenView{
         spiel.start();
         while(spiel.gewinnerVorhanden() == null){
             showSpiel();
-            spielzug();    
+            spielzug();
+            spiel.naechsteSpieler();
         }
         siegerAngeben();
-        
     }
-
-    
 
     public static void main(String[] args){
         new KonsolenView();

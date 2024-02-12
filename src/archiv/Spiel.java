@@ -64,6 +64,11 @@ public class Spiel {
         }
     }
 
+    /**
+     * Legt die Karte mit der kartenNummer des aktuellen Spielers.
+     * @param kartenNummer
+     * @return
+     */
     public boolean karteSpielen(int kartenNummer){
         if(kartenNummer < 0)
             return false;
@@ -75,7 +80,6 @@ public class Spiel {
         //Der reguläre Fall, wenn die Karte gelegt werden kann
         karte = aktuellerSpieler.getHandkarten().ziehen(kartenNummer);
         ablageStapel.karteAuflegen(karte);
-        naechsteSpieler();
         return true;
     }
 
@@ -98,6 +102,9 @@ public class Spiel {
         return karte.getFarbe().equals(k.getFarbe()) || karte.getZiffer() == k.getZiffer();
     }
 
+    /**
+     * Der nächste Spieler wird als aktueller Spieler gesetzt.
+     */
     public void naechsteSpieler() {
         int pos = players.indexOf(aktuellerSpieler);
         pos += reverse ? -1 : 1; 
