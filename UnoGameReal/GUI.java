@@ -1,15 +1,13 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class GUI extends JFrame implements ActionListener {
@@ -58,6 +56,8 @@ public class GUI extends JFrame implements ActionListener {
          */
         if(e.getActionCommand().startsWith("Handkarte")){
             System.out.println(e.getActionCommand());
+            spielerKartenPanel.remove((Component)e.getSource());
+            spielerKartenPanel.updateUI();
             return; 
         }
         
@@ -71,9 +71,7 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        // UnoModel model = new UnoModel();
         GUI view = new GUI();
-        // Controller controller = new Controller(model, view);
         view.setVisible(true);
     }
 }
