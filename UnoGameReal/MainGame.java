@@ -1,4 +1,77 @@
-// hier sollten die allgemeinden Spieloperatoren angegeben werden
+// hier sollten die allgemeinen Spieloperatoren angegeben werden
+import java.util.Random;
+import java.util.Stack;
+
+public class MainGame{
+    Random rand = new Random();
+    private String[] randomFarbe = {"y","b","g","r"};
+    public Stack<Karte> stapel = new Stack<Karte>();
+
+    public MainGame() {
+        
+        while(stapel.size() < 80){
+            Karte k = new Karte(randomFarbe[rand.nextInt(4)].toString(),rand.nextInt(10));
+            if(!gibtKarte(2, k, stapel)){
+                stapel.push(k);
+            }
+        }
+    }
+
+    public void gibKartenAus(){
+        while(!stapel.empty()){
+            System.out.println(stapel.pop());
+        }
+    }
+
+    public Karte randomKarte(){
+        Karte k = new Karte(randomFarbe[rand.nextInt(4)].toString(),rand.nextInt(10));
+        return k;
+    }
+
+    public boolean gibtKarte(int anzahl, Karte k, Stack<Karte> st){
+        boolean gibtEs = false;
+        int i = 0;
+        Stack<Karte> temp = new Stack<Karte>();
+        while(!st.empty()){
+            if(k == st.peek()){
+                i++;
+                temp.add(st.pop());
+            }else{
+                temp.add(st.pop());
+            }
+        }
+        if(i >= anzahl){
+            gibtEs =  true;
+        }else{gibtEs = false;}
+
+        while(!temp.empty()){
+            st.add(temp.pop());
+        }
+
+        return gibtEs;
+    }
+
+    public boolean alleKarten(Stack<Karte> stp){
+        boolean endErgebnis = false;
+        if(stp.size() >= 80){
+            endErgebnis = true;
+            System.out.println(stp.size());
+        }
+        return endErgebnis;
+    }
+
+    /*public boolean darfLegen(){
+        return Spieler.getKarte().darfauf();
+    }*/
+
+    public static void main(String[] args){
+
+		MainGame mG = new MainGame();
+        mG.gibKartenAus();
+	
+	}
+}
+
 // der "Ablagestapel" soll lediglich eine Karte sein die oben angezeigt und gegetted werden muss
 // Der "Ziehstapel" soll eine Liste sein die vorher random preperiert wurde, hier wird die oberste Karte gezogen wenn der Spieler sie zieht
 // weitere Regeln
