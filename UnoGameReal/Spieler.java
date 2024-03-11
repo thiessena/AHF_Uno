@@ -4,7 +4,7 @@ import java.util.List;
 public class Spieler {
    
     private String name;
-   
+    public Karte abgelegteKarte;
     private List<Karte> handKarten;
    
     public Spieler(String name) {
@@ -17,7 +17,7 @@ public class Spieler {
    }
    
    public List<Karte> getHandKarten() {
-       return handKarte;
+       return handKarten;
    }
    
    public void addKarte(Karte karte) {
@@ -25,7 +25,15 @@ public class Spieler {
    }
    
    public void removeKarte(Karte karte) {
-       handkarten.remove(karte);
+       handKarten.remove(karte);
+   }
+
+   public void handkarteHinzufügen(Karte getKarte){
+        handKarten.add(getKarte);
+   }
+
+   public void karteAblegen(Karte setKarte){
+        abgelegteKarte = setKarte;
    }
 
 }
