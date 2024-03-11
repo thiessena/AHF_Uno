@@ -9,18 +9,19 @@ public class MainGame{
 
     public MainGame() {
         
+        GUI gameUI = new GUI();
+        gameUI.setVisible(true);
         while(stapel.size() < 80){
             Karte k = new Karte(randomFarbe[rand.nextInt(4)].toString(),rand.nextInt(10));
             if(!gibtKarte(2, k, stapel)){
                 stapel.push(k);
             }
         }
+        
     }
 
-    public void gibKartenAus(){
-        while(!stapel.empty()){
-            System.out.println(stapel.pop());
-        }
+    public Stack<Karte> gibKartenAus(){
+        return stapel;
     }
 
     public Karte randomKarte(){
