@@ -16,6 +16,10 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel spielerKartenPanel;
     private JButton drawCardButton;
 
+    private Karte newKarte;
+
+    public boolean newKInit;
+
     public GUI() {
         setTitle("Uno Kartenspiel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +52,14 @@ public class GUI extends JFrame implements ActionListener {
         }
     }
 
+    public void setNewHandkarte(Karte k){
+        newKarte = k;
+    }
+
+    public boolean newKarteInit(){
+        return newKInit;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e){
         /**
@@ -62,16 +74,11 @@ public class GUI extends JFrame implements ActionListener {
         }
         
         if(e.getSource().equals(drawCardButton)){
-            spielerKartenPanel.add(new KButton(new Karte("grün",9),this));
+            spielerKartenPanel.add(new KButton(newKarte,this));
             buttonPanel.updateUI();
             System.out.println("Anzahl der Handkarten:" + spielerKartenPanel.getComponentCount());
             return;
         }
 
-    }
-
-    public static void main(String[] args) {
-        GUI view = new GUI();
-        view.setVisible(true);
     }
 }
