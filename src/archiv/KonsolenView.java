@@ -5,8 +5,8 @@ public class KonsolenView{
     Spiel spiel;
     Scanner eingabe = new Scanner(System.in);
 
-    public KonsolenView(){
-        spiel = new Spiel(this); 
+    public KonsolenView(Spiel pSpiel){
+        spiel = pSpiel; 
         game();
     }
 
@@ -70,6 +70,8 @@ public class KonsolenView{
     }
 
     public static void main(String[] args){
-        new KonsolenView();
+        Spiel spiel = new Spiel();
+        new KonsolenView(spiel);
+
     }
 }

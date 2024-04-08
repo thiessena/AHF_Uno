@@ -17,56 +17,32 @@ public class GUISpiel extends JFrame {
     private JButton drawCardButton;
     private JLabel playerHandLabel;
     private JLabel playedCardsLabel;
-    JPanel buttonPanel;
+    JPanel buttonPanel; //Zum Anzeigen, der eigenen Handkarten
+    JPanel spielerPanel; //Zum Anzeigen der anderen Spieler
 
-    private List kartenStapel = new ArrayList<>();
+    private UnoSpieler sp;
+    private Spiel spiel;
 
-    public GUISpiel() {
+    public GUISpiel(Spiel pSpiel, UnoSpieler pSpieler) {
         setTitle("Uno Kartenspiel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLayout(new BorderLayout());
+        spiel = pSpiel;
 
         // Erstellen Sie die GUI-Elemente
         drawCardButton = new JButton("Karte ziehen");
-        ArrayList<String> spielerKarten = new ArrayList<String>();
-        spielerKarten.add("1, grün");
-        spielerKarten.add("3, grün");
-        spielerKarten.add("1, gelb");
-
         playerHandLabel = new JLabel("Spielerhand:");
         playedCardsLabel = new JLabel("Gespielte Karten:");
-
         // Fügen Sie die GUI-Elemente dem Fenster hinzu
         buttonPanel = new JPanel();
-        spielerKarten.add("1, grün");
-        spielerKarten.add("3, grün");
-        spielerKarten.add("1, gelb");
-        spielerKarten.add("1, rot");
-        handkartenAnzeigen(spielerKarten);
 
         JPanel labelPanel = new JPanel(new GridLayout(2, 1));
         labelPanel.add(playerHandLabel);
         labelPanel.add(playedCardsLabel);
 
-        drawCardButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                addCard();
-            }
-
-            public void addCard() {
-                spielerKarten.add("1, rot");
-                handkartenAnzeigen(spielerKarten);
-            }
-        });
-
         add(buttonPanel, BorderLayout.SOUTH);
         add(labelPanel, BorderLayout.CENTER);
-    }
-
-    public void addPlayCardListener(ActionListener listener) {
-        // die Jeweilige Karte soll ausgespielt werden
     }
 
     public void handkartenAnzeigen(ArrayList<String> karten) {
@@ -80,9 +56,13 @@ public class GUISpiel extends JFrame {
     }
 
     public static void main(String[] args) {
-        // UnoModel model = new UnoModel();/
-        GUISpiel view = new GUISpiel();
-        // Controller controller = new Controller(model, view);
-        view.setVisible(true);
+        Spiel spiel = new Spiel(); 
+        spiel.addSpieler(new UnoSpieler("Andi"));
+        spiel.addSpieler(new UnoSpieler("Basti"));
+
+        GUISpiel sp1 = new GUISpiel(spiel, spiel.getAlleSpieler().get(0));
+        sp1.setVisible(true);
+        GUISpiel sp2 = new GUISpiel(spiel,spiel.getAlleSpieler().get(1)); 
+        sp2.setVisible(true);
     }
 }

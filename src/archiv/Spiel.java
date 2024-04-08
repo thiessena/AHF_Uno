@@ -7,15 +7,20 @@ public class Spiel {
     private ArrayList<UnoSpieler> players;
     private boolean reverse;
     private UnoSpieler aktuellerSpieler;
-    private KonsolenView kView;
 
+    public Spiel() {
+        nachZiehStapel = new Kartenstapel(false);
+        ablageStapel = new Kartenstapel(true);
+        players = new ArrayList<>();
+        reverse = false;
+        aktuellerSpieler = null;
+    }
     public Spiel(KonsolenView kView) {
         nachZiehStapel = new Kartenstapel(false);
         ablageStapel = new Kartenstapel(true);
         players = new ArrayList<>();
         reverse = false;
         aktuellerSpieler = null;
-        this.kView = kView;
     }
 
     public void addSpieler(UnoSpieler uSpieler){
