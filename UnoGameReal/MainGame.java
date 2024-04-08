@@ -31,6 +31,14 @@ public class MainGame {
     }
 
     public void initNewKarte() {
+        if(stapel.empty()){
+            while (stapel.size() < 80) {
+                Karte k = new Karte(randomFarbe[rand.nextInt(4)].toString(), rand.nextInt(10));
+                if (!gibtKarte(2, k, stapel)) {
+                    stapel.push(k);
+                }
+            }
+        }
         gmui.setNewHandkarte(stapel.pop());
     }
 
